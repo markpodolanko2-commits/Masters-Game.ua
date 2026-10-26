@@ -1,0 +1,1213 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090711">
+<meta name="description" content="Mysterious Game UA — Minecraft Java та Bedrock. Survival з модами, OneBlock, Anarchy.">
+<title>Mysterious Game UA — Твій світ. Твої правила.</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
+
+:root{
+  --bg:#090711;
+  --bg2:#0e0b19;
+  --panel:#121020;
+  --panel2:#19142a;
+  --purple:#a855f7;
+  --violet:#7c3aed;
+  --pink:#d946ef;
+  --text:#f6f2ff;
+  --muted:#9b94b1;
+  --line:rgba(188,151,255,.14);
+  --green:#4ade80;
+  --radius:22px;
+  --shadow:0 20px 70px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Manrope,Arial,sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 75% 8%,rgba(124,58,237,.16),transparent 32%),
+    radial-gradient(ellipse at 5% 40%,rgba(168,85,247,.09),transparent 35%),
+    radial-gradient(ellipse at 90% 90%,rgba(217,70,239,.07),transparent 35%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;
+  background-image:radial-gradient(rgba(203,173,255,.42) .7px,transparent .7px);
+  background-size:27px 27px;
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--pink);outline-offset:4px
+}
+::selection{background:#8b5cf6;color:white}
+.container{width:min(1220px,calc(100% - 44px));margin:auto}
+.muted{color:var(--muted)}
+.purple{color:#c084fc}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  color:#d8b4fe;font-size:11px;font-weight:800;
+  letter-spacing:2.5px;text-transform:uppercase
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--pink)}
+.section{padding:100px 0;position:relative}
+.section-head{max-width:740px;margin-bottom:38px}
+.section-head h2{
+  font-family:Orbitron,sans-serif;font-size:clamp(27px,4vw,43px);
+  line-height:1.25;letter-spacing:-1.4px;margin:13px 0
+}
+.section-head p{color:var(--muted);font-size:14px;max-width:650px}
+.btn{
+  border:1px solid transparent;border-radius:13px;padding:13px 19px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-weight:800;font-size:12px;transition:.25s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{
+  background:linear-gradient(120deg,#9333ea,#6d28d9 60%,#a855f7);
+  color:white;box-shadow:0 8px 30px rgba(124,58,237,.26)
+}
+.btn-primary:hover{box-shadow:0 12px 38px rgba(168,85,247,.4)}
+.btn-secondary{background:rgba(255,255,255,.035);border-color:var(--line)}
+.btn-secondary:hover{border-color:#a855f7;background:rgba(168,85,247,.08)}
+.btn-small{padding:9px 13px;font-size:11px}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 10px;
+  border:1px solid var(--line);border-radius:8px;
+  font-size:10px;color:#d8b4fe;background:rgba(168,85,247,.08)
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block}
+.card{
+  background:linear-gradient(145deg,rgba(24,19,41,.96),rgba(14,12,25,.97));
+  border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);transition:border-color .25s,transform .25s
+}
+.card:hover{border-color:rgba(168,85,247,.42)}
+/* HEADER */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(9,7,17,.83);backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line)
+}
+.nav{
+  height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:220px}
+.brand-icon{
+  width:43px;height:43px;display:grid;place-items:center;border-radius:14px;
+  background:linear-gradient(135deg,#9333ea,#4c1d95);
+  box-shadow:0 0 28px rgba(168,85,247,.3);font-size:22px
+}
+.brand-name{font-family:Orbitron,sans-serif;font-size:13px;font-weight:800;line-height:1.4}
+.brand-name small{display:block;color:#b69ad8;font-family:Manrope,sans-serif;font-size:9px;letter-spacing:2px}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:11px;font-weight:700;color:#b7b0c9;transition:.2s}
+.nav-links a:hover{color:white}
+.nav-actions{display:flex;align-items:center;gap:9px}
+.icon-btn{
+  width:40px;height:40px;display:grid;place-items:center;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);
+  color:white;border-radius:12px
+}
+.menu-toggle{display:none}
+/* MOBILE SIDE PANEL */
+.mobile-panel{
+  display:none;position:fixed;inset:76px 0 0;z-index:99;
+  background:rgba(9,7,17,.98);padding:25px 24px;overflow:auto
+}
+.mobile-panel.open{display:block}
+.mobile-panel a{display:block;padding:14px;border-bottom:1px solid var(--line);font-weight:700}
+/* HERO */
+.hero{padding:150px 0 70px;min-height:760px;display:flex;align-items:center;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:center}
+.hero h1{
+  font-family:Orbitron,sans-serif;font-size:clamp(37px,5.4vw,68px);
+  line-height:1.12;letter-spacing:-2.5px;margin:22px 0
+}
+.hero h1 span{
+  display:block;color:#c084fc;
+  text-shadow:0 0 40px rgba(168,85,247,.3)
+}
+.hero-description{font-size:15px;color:#b3acc7;max-width:550px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}
+.hero-meta{display:flex;gap:23px;flex-wrap:wrap;color:var(--muted);font-size:11px}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.world-art{
+  position:relative;min-height:460px;display:grid;place-items:center;
+  isolation:isolate
+}
+.orbit{
+  position:absolute;border:1px solid rgba(192,132,252,.17);border-radius:50%;
+  width:430px;height:430px;animation:spin 32s linear infinite
+}
+.orbit::before,.orbit::after{
+  content:"";position:absolute;width:9px;height:9px;border-radius:50%;
+  background:#d8b4fe;box-shadow:0 0 20px #a855f7
+}
+.orbit::before{top:45px;left:45px}
+.orbit::after{bottom:60px;right:28px}
+.orbit.two{width:330px;height:330px;border-style:dashed;animation-direction:reverse;animation-duration:45s}
+.portal{
+  position:relative;width:min(320px,78vw);aspect-ratio:1;
+  display:grid;place-items:center;border-radius:50%;
+  background:radial-gradient(circle,rgba(168,85,247,.23),rgba(76,29,149,.09) 48%,transparent 70%);
+  animation:float 5s ease-in-out infinite
+}
+.portal-ring{
+  position:absolute;inset:14%;border:2px solid rgba(192,132,252,.75);
+  border-radius:48%;transform:rotate(35deg);
+  box-shadow:0 0 35px rgba(168,85,247,.3),inset 0 0 35px rgba(168,85,247,.18)
+}
+.portal-ring.two{inset:23%;transform:rotate(-35deg);border-color:rgba(217,70,239,.65)}
+.portal-core{font-size:100px;filter:drop-shadow(0 0 35px rgba(168,85,247,.85))}
+.float-card{
+  position:absolute;background:rgba(17,13,30,.88);backdrop-filter:blur(15px);
+  border:1px solid var(--line);border-radius:16px;padding:14px 17px;
+  box-shadow:var(--shadow);font-size:11px
+}
+.float-card strong{display:block;font-size:14px}
+.float-card small{color:var(--muted)}
+.float-card.one{top:60px;right:0}
+.float-card.two{bottom:65px;left:0}
+.float-card.three{bottom:5px;right:20px}
+.server-address{
+  display:flex;align-items:center;gap:12px;padding:9px 10px 9px 16px;
+  max-width:440px;background:rgba(255,255,255,.035);
+  border:1px solid var(--line);border-radius:15px;margin-top:28px
+}
+.server-address div{flex:1;min-width:0}
+.server-address small{display:block;font-size:9px;color:var(--muted);letter-spacing:1px}
+.server-address code{font-size:13px;color:#e9d5ff;overflow-wrap:anywhere}
+.server-address button{flex-shrink:0}
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:2px;color:#706783}
+/* STAT BAR */
+.stat-wrap{margin-top:-15px;position:relative;z-index:2}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{padding:22px 24px;display:flex;align-items:center;gap:15px}
+.stat-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:rgba(168,85,247,.12);font-size:21px}
+.stat strong{display:block;font-size:18px}
+.stat small{display:block;color:var(--muted);font-size:10px}
+/* MODES */
+.mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.mode-card{padding:26px;overflow:hidden;position:relative}
+.mode-card::before{
+  content:"";position:absolute;width:150px;height:150px;right:-70px;top:-70px;
+  border-radius:50%;background:rgba(168,85,247,.13);filter:blur(8px)
+}
+.mode-icon{font-size:37px;margin-bottom:18px}
+.mode-card h3{font-family:Orbitron,sans-serif;font-size:17px;margin-bottom:8px}
+.mode-card p{font-size:12px;color:var(--muted);min-height:60px}
+.mode-card .mode-footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:8px}
+/* FEATURE STRIP */
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.feature{padding:23px}
+.feature-icon{font-size:25px;margin-bottom:10px}
+.feature h3{font-size:14px;margin-bottom:5px}
+.feature p{font-size:11px;color:var(--muted)}
+/* RANKS */
+.rank-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.filter-btn{
+  border:1px solid var(--line);background:rgba(255,255,255,.025);
+  color:#bdb4d1;border-radius:10px;padding:10px 15px;font-size:11px;font-weight:800
+}
+.filter-btn.active,.filter-btn:hover{background:rgba(168,85,247,.15);border-color:#9333ea;color:white}
+.rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.rank-card{padding:24px;position:relative;overflow:hidden}
+.rank-card.featured{border-color:rgba(168,85,247,.6);box-shadow:0 10px 45px rgba(124,58,237,.12)}
+.rank-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rank-symbol{
+  width:49px;height:49px;display:grid;place-items:center;border-radius:15px;
+  font-size:23px;background:linear-gradient(135deg,rgba(168,85,247,.28),rgba(124,58,237,.07));
+  border:1px solid var(--line)
+}
+.rank-card h3{font-family:Orbitron,sans-serif;font-size:19px;margin:18px 0 5px}
+.rank-price{font-size:29px;font-weight:800;letter-spacing:-1px}
+.rank-price small{font-size:11px;color:var(--muted);font-weight:500}
+.rank-desc{color:var(--muted);font-size:11px;min-height:40px;margin:9px 0 17px}
+.rank-features{list-style:none;border-top:1px solid var(--line);padding-top:15px}
+.rank-features li{display:flex;gap:9px;font-size:11px;color:#d2c9e3;padding:5px 0;line-height:1.55}
+.rank-features li::before{content:"✦";color:#c084fc;flex-shrink:0}
+.rank-features .extra{display:none}
+.rank-card.expanded .rank-features .extra{display:flex}
+.rank-bottom{display:flex;gap:8px;margin-top:20px}
+.rank-bottom button{flex:1}
+.rank-note{font-size:10px;color:var(--muted);margin-top:14px}
+.disclaimer{font-size:11px;color:var(--muted);margin-top:22px;line-height:1.8}
+/* VOTE / COMMUNITY */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.promo{padding:32px;position:relative;overflow:hidden}
+.promo h3{font-family:Orbitron,sans-serif;font-size:21px;margin:13px 0}
+.promo p{font-size:12px;color:var(--muted);max-width:430px;margin-bottom:20px}
+.promo-art{position:absolute;right:20px;bottom:0;font-size:100px;opacity:.12;pointer-events:none}
+/* RULES */
+.rules-layout{display:grid;grid-template-columns:270px 1fr;gap:23px;align-items:start}
+.rules-nav{padding:12px;position:sticky;top:95px}
+.rules-nav button{
+  display:block;width:100%;text-align:left;border:0;background:transparent;color:#aaa1bd;
+  border-radius:10px;padding:12px;font-size:11px;font-weight:800
+}
+.rules-nav button.active,.rules-nav button:hover{background:rgba(168,85,247,.13);color:white}
+.rules-content{padding:28px}
+.rules-intro{padding:15px 17px;background:rgba(168,85,247,.07);border:1px solid var(--line);border-radius:13px;margin-bottom:20px;font-size:12px;color:#c9bce0}
+.rule-group{border-bottom:1px solid var(--line)}
+.rule-heading{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:17px 0;border:0;background:transparent;color:white;text-align:left;font-weight:800;font-size:13px
+}
+.rule-heading span:last-child{color:#c084fc;font-size:19px;transition:.2s}
+.rule-body{display:none;padding:0 0 17px}
+.rule-group.open .rule-body{display:block}
+.rule-group.open .rule-heading span:last-child{transform:rotate(45deg)}
+.rule-body p{font-size:12px;color:#b9b0cb;padding:7px 0;line-height:1.8}
+.rule-search{width:100%;background:#0c0a15;border:1px solid var(--line);border-radius:11px;padding:12px;color:white;margin:0 0 17px;font-size:12px}
+/* APPLICATION */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;font-weight:800;color:#d6cce8}
+.field input,.field textarea,.field select{
+  background:#0c0a15;border:1px solid var(--line);border-radius:11px;padding:13px;
+  color:white;outline:none;width:100%;font-size:12px
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#a855f7}
+.field textarea{min-height:120px;resize:vertical}
+.field select option{background:#121020}
+.form-note{font-size:10px;color:var(--muted);margin-top:13px}
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:42px 0 25px;background:rgba(5,4,10,.6)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;padding-bottom:35px}
+.footer-grid h4{font-size:12px;margin-bottom:13px}
+.footer-grid p,.footer-grid a{font-size:11px;color:var(--muted)}
+.footer-links{display:grid;gap:8px}
+.footer-grid a:hover{color:#d8b4fe}
+.footer-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;font-size:10px;color:#716982}
+/* MODALS AND TOASTS */
+.modal{
+  position:fixed;inset:0;z-index:300;display:none;place-items:center;
+  padding:20px;background:rgba(3,2,8,.82);backdrop-filter:blur(12px)
+}
+.modal.show{display:grid}
+.modal-box{width:min(540px,100%);max-height:85vh;overflow:auto;padding:26px}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.modal-top h3{font-family:Orbitron,sans-serif;font-size:16px}
+.search-results{display:grid;gap:8px}
+.search-results a{padding:12px;border:1px solid var(--line);border-radius:10px;font-size:12px}
+.search-results a:hover{background:rgba(168,85,247,.1)}
+.toast{
+  position:fixed;bottom:25px;left:50%;z-index:500;transform:translate(-50%,30px);
+  opacity:0;pointer-events:none;padding:13px 20px;border:1px solid rgba(192,132,252,.35);
+  border-radius:13px;background:#171027;color:white;font-size:12px;
+  box-shadow:var(--shadow);transition:.3s;max-width:90vw;text-align:center
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.back-top{
+  position:fixed;right:20px;bottom:20px;z-index:90;width:43px;height:43px;
+  display:none;place-items:center;border:1px solid var(--line);border-radius:13px;
+  background:#171027;color:white;font-size:18px
+}
+.back-top.show{display:grid}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+@keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .nav-links{gap:13px}.nav-links a{font-size:10px}
+  .brand{min-width:unset}.hero-grid{gap:20px}
+  .rank-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:800px){
+  .nav-links,.desktop-join{display:none}.menu-toggle{display:grid}
+  .hero{padding-top:125px;min-height:auto;padding-bottom:85px}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-copy{text-align:center}
+  .hero-description{margin:auto}
+  .hero-actions{justify-content:center}
+  .server-address{margin-left:auto;margin-right:auto;text-align:left}
+  .hero-meta{justify-content:center}
+  .world-art{min-height:360px}
+  .orbit{width:330px;height:330px}.orbit.two{width:260px;height:260px}
+  .portal{width:270px}.portal-core{font-size:78px}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .mode-grid,.feature-grid{grid-template-columns:1fr}
+  .mode-card p{min-height:0}
+  .two-col{grid-template-columns:1fr}
+  .rules-layout{grid-template-columns:1fr}
+  .rules-nav{position:static;display:grid;grid-template-columns:1fr 1fr}
+  .section{padding:72px 0}
+}
+@media(max-width:540px){
+  .container{width:calc(100% - 28px)}
+  .nav{height:68px}.mobile-panel{inset:68px 0 0}
+  .brand-icon{width:38px;height:38px}.brand-name{font-size:11px}
+  .hero h1{font-size:38px;letter-spacing:-1.5px}
+  .hero-description{font-size:13px}
+  .hero-actions .btn{width:100%}
+  .server-address{padding:9px;gap:6px}
+  .server-address code{font-size:11px}
+  .server-address .btn{padding:10px}
+  .world-art{min-height:310px}
+  .float-card{padding:10px;font-size:9px}
+  .float-card strong{font-size:11px}
+  .float-card.one{right:-2px;top:25px}
+  .float-card.two{left:0;bottom:40px}
+  .float-card.three{right:0;bottom:0}
+  .stat{padding:15px;gap:10px}.stat-icon{width:36px;height:36px}
+  .stat strong{font-size:15px}
+  .rank-grid{grid-template-columns:1fr}
+  .rank-card{padding:22px}
+  .section-head h2{font-size:29px}
+  .rules-content{padding:18px}
+  .rules-nav{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .footer-grid{grid-template-columns:1fr;gap:25px}
+  .promo{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Mysterious Game UA — головна">
+      <div class="brand-icon">✦</div>
+      <div class="brand-name">MYSTERIOUS GAME<small>UKRAINIAN COMMUNITY</small></div>
+    </a>
+    <nav class="nav-links" aria-label="Головна навігація">
+      <a href="#modes">Режими</a>
+      <a href="#features">Можливості</a>
+      <a href="#ranks">Привілеї</a>
+      <a href="#rules">Правила</a>
+      <a href="#community">Спільнота</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchOpen" aria-label="Пошук">⌕</button>
+      <a class="btn btn-primary btn-small desktop-join" href="#join">Грати зараз ↗</a>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Відкрити меню" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-panel" id="mobilePanel" aria-label="Мобільне меню">
+  <a href="#home">⌂ Головна</a>
+  <a href="#modes">▣ Режими гри</a>
+  <a href="#features">✦ Можливості</a>
+  <a href="#ranks">♛ Привілеї</a>
+  <a href="#vote">◇ Голосування</a>
+  <a href="#rules">≡ Правила</a>
+  <a href="#application">✉ Заявка до команди</a>
+  <a href="#community">☁ Discord</a>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="dot"></span> Український Minecraft-проєкт</div>
+      <h1>ТВІЙ СВІТ.<span>ТВОЇ ПРАВИЛА.</span></h1>
+      <p class="hero-description">
+        Відкрий власну історію у Mysterious Game UA. Будуй, виживай,
+        досліджуй загадкові світи та грай разом із друзями на Java і Bedrock.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#join">✦ Приєднатися до гри</a>
+        <a class="btn btn-secondary" href="#modes">Дослідити режими ↓</a>
+      </div>
+      <div class="hero-meta">
+        <span>◈ Java Edition</span>
+        <span>◈ Bedrock Edition</span>
+        <span>◈ Версії 1.21–26.3*</span>
+      </div>
+      <div class="server-address">
+        <div>
+          <small>АДРЕСА СЕРВЕРА</small>
+          <code id="serverAddress">mysterious-game.pp.ua</code>
+        </div>
+        <button class="btn btn-primary btn-small" data-copy="java">Копіювати</button>
+      </div>
+      <p class="muted" style="font-size:10px;margin-top:9px">
+        *Перевір сумісність конкретної версії перед підключенням.
+      </p>
+    </div>
+    <div class="world-art" aria-label="Містична фіолетова атмосфера">
+      <div class="orbit"></div><div class="orbit two"></div>
+      <div class="portal">
+        <div class="portal-ring"></div><div class="portal-ring two"></div>
+        <div class="portal-core">◆</div>
+      </div>
+      <div class="float-card one">✦ <strong>Твоя пригода</strong><small>Починається тут</small></div>
+      <div class="float-card two">◈ <strong>Java + Bedrock</strong><small>Обери свою платформу</small></div>
+      <div class="float-card three">⬡ <strong>3 режими</strong><small>Різні світи — одна спільнота</small></div>
+    </div>
+  </div>
+  <div class="scroll-hint">ПРОКРУТИ, ЩОБ ДОСЛІДИТИ ↓</div>
+</section>
+
+<div class="container stat-wrap">
+  <div class="stat-grid">
+    <div class="card stat">
+      <div class="stat-icon">◉</div>
+      <div><strong id="onlineCount">—</strong><small>Гравців онлайн</small></div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">⌘</div>
+      <div><strong>Java + Bedrock</strong><small>Підтримувані платформи</small></div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">♧</div>
+      <div><strong>3 режими</strong><small>Обирай стиль гри</small></div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">◈</div>
+      <div><strong id="serverStatus">Не перевірено</strong><small>Статус сервера</small></div>
+    </div>
+  </div>
+  <p class="muted" style="font-size:10px;margin-top:10px">
+    Онлайн і статус не підключені до API сервера — показники оновляться після налаштування інтеграції.
+  </p>
+</div>
+
+<section class="section" id="modes">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Знайди свій світ</div>
+      <h2>Обери <span class="purple">режим гри</span></h2>
+      <p>Три різні способи провести час у Minecraft. Збирай ресурси, перевіряй свої навички та створюй власну історію.</p>
+    </div>
+    <div class="mode-grid">
+      <article class="card mode-card reveal">
+        <div class="mode-icon">☁️</div><span class="tag">ВИЖИВАННЯ</span>
+        <h3>OneBlock</h3>
+        <p>Почни з одного блока. Добувай ресурси, відкривай нові можливості та перетворюй маленький острів на власний світ.</p>
+        <div class="mode-footer"><span class="muted" style="font-size:10px">Прогрес і розвиток</span><a class="btn btn-secondary btn-small" href="#join">Дізнатись ↗</a></div>
+      </article>
+      <article class="card mode-card reveal">
+        <div class="mode-icon">⚔️</div><span class="tag">БЕЗ КОМПРОМІСІВ</span>
+        <h3>Anarchy</h3>
+        <p>Непередбачуваний світ, небезпечні пригоди та свобода дій. Продумуй стратегію й будь готовий до несподіванок.</p>
+        <div class="mode-footer"><span class="muted" style="font-size:10px">Випробування</span><a class="btn btn-secondary btn-small" href="#join">Дізнатись ↗</a></div>
+      </article>
+      <article class="card mode-card reveal">
+        <div class="mode-icon">🌲</div><span class="tag">З МОДАМИ</span>
+        <h3>Survival</h3>
+        <p>Досліджуй світ, створюй ферми, будуй бази, розвивай господарство та грай за правилами спільноти.</p>
+        <div class="mode-footer"><span class="muted" style="font-size:10px">Будівництво і дослідження</span><a class="btn btn-secondary btn-small" href="#rules">Правила ↗</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features" style="padding-top:10px">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Більше можливостей</div>
+      <h2>Створи свою <span class="purple">історію</span></h2>
+      <p>Розвивайся у власному темпі та користуйся можливостями, які пропонує ігровий сервер.</p>
+    </div>
+    <div class="feature-grid">
+      <article class="card feature reveal"><div class="feature-icon">⌂</div><h3>Власна територія</h3><p>Захищай свою базу та створюй приватний простір для будівництва.</p></article>
+      <article class="card feature reveal"><div class="feature-icon">▦</div><h3>Економіка</h3><p>Торгуй, розвивай магазини та використовуй доступні ігрові механіки.</p></article>
+      <article class="card feature reveal"><div class="feature-icon">♜</div><h3>Привілеї</h3><p>Обирай ранг відповідно до доступних лімітів і команд.</p></article>
+      <article class="card feature reveal"><div class="feature-icon">⚒</div><h3>Будівництво</h3><p>Втілюй архітектурні ідеї та створюй власні масштабні проєкти.</p></article>
+      <article class="card feature reveal"><div class="feature-icon">♧</div><h3>Гра з друзями</h3><p>Об'єднуйся з іншими гравцями й розвивай спільні проєкти.</p></article>
+      <article class="card feature reveal"><div class="feature-icon">☄</div><h3>Пригоди</h3><p>Обирай власний стиль гри та відкривай нові можливості світу.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="join">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Готовий до пригод?</div>
+      <h2>Приєднуйся до <span class="purple">сервера</span></h2>
+      <p>Скопіюй адресу, відкрий Minecraft і додай сервер до списку.</p>
+    </div>
+    <div class="two-col">
+      <article class="card promo reveal">
+        <span class="tag">JAVA EDITION</span><h3>Грай на Java</h3>
+        <p>Відкрий Multiplayer, натисни Add Server та введи адресу сервера.</p>
+        <div class="server-address" style="margin:0 0 16px">
+          <div><small>SERVER ADDRESS</small><code>mysterious-game.pp.ua</code></div>
+          <button class="btn btn-primary btn-small" data-copy="java">Копіювати</button>
+        </div>
+        <div class="promo-art">⚒</div>
+      </article>
+      <article class="card promo reveal">
+        <span class="tag">BEDROCK EDITION</span><h3>Грай на Bedrock</h3>
+        <p>Додай сервер у розділі Servers. Для Bedrock необхідно знати справжній мережевий порт.</p>
+        <div class="server-address" style="margin:0 0 16px">
+          <div><small>SERVER ADDRESS</small><code>mysterious-game.pp.ua</code></div>
+          <button class="btn btn-primary btn-small" data-copy="bedrock">Копіювати IP</button>
+        </div>
+        <div class="promo-art">◇</div>
+      </article>
+    </div>
+    <p class="disclaimer">Адреса та підтримка Java/Bedrock вказані за наданими даними. Фактичну доступність сервера, сумісність версій і порт Bedrock потрібно перевірити.</p>
+  </div>
+</section>
+
+<section class="section" id="ranks">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Підтримай проєкт</div>
+      <h2>Магазин <span class="purple">привілеїв</span></h2>
+      <p>Переглянь доступні ранги, їхні можливості та вартість. За наданою інформацією, видача рангів відбувається вручну після фінансової підтримки сервера.</p>
+    </div>
+    <div class="rank-controls" id="rankFilters">
+      <button class="filter-btn active" data-filter="all">Усі ранги</button>
+      <button class="filter-btn" data-filter="low">Початкові</button>
+      <button class="filter-btn" data-filter="mid">Розширені</button>
+      <button class="filter-btn" data-filter="high">Елітні</button>
+    </div>
+    <div class="rank-grid" id="rankGrid"></div>
+    <div class="card" style="padding:23px;margin-top:22px">
+      <strong style="font-size:13px">Як отримати ранг?</strong>
+      <p class="muted" style="font-size:12px;margin:7px 0 15px">
+        Наразі ранги видаються вручну. Перед оплатою уточни спосіб переказу, свій ігровий нікнейм і термін видачі в адміністрації.
+      </p>
+      <a class="btn btn-primary" href="https://discord.gg/jRgqqB5WeD" target="_blank" rel="noopener noreferrer">Уточнити в Discord ↗</a>
+    </div>
+    <p class="disclaimer">Вартість указана в гривнях відповідно до наданого опису. Оплата на сайті не реалізована. Перевір характеристики рангів перед публікацією, особливо успадкування можливостей і назву рангу за 100 грн.</p>
+  </div>
+</section>
+
+<section class="section" id="vote">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Допоможи спільноті</div>
+      <h2>Підтримай <span class="purple">сервер</span></h2>
+      <p>Твоя підтримка допомагає іншим гравцям дізнатися про проєкт.</p>
+    </div>
+    <div class="two-col">
+      <article class="card promo reveal">
+        <span class="tag">ГОЛОСУВАННЯ</span><h3>Твій голос важливий</h3>
+        <p>Голосуй за сервер на офіційних майданчиках, коли адміністрація додасть посилання.</p>
+        <button class="btn btn-primary" id="voteButton">Перейти до голосування ↗</button>
+        <div class="promo-art">✦</div>
+      </article>
+      <article class="card promo reveal">
+        <span class="tag">СПІЛЬНОТА</span><h3>Знайди своїх</h3>
+        <p>Приєднуйся до Discord, щоб дізнаватися новини, ставити запитання й спілкуватися з іншими гравцями.</p>
+        <a class="btn btn-secondary" href="https://discord.gg/jRgqqB5WeD" target="_blank" rel="noopener noreferrer">Відкрити Discord ↗</a>
+        <div class="promo-art">☁</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rules">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Перед початком гри</div>
+      <h2>Правила <span class="purple">сервера</span></h2>
+      <p>Правила звичайного виживання з модами. Прочитай їх, щоб розуміти вимоги до спілкування, будівництва та використання модифікацій.</p>
+    </div>
+    <div class="rules-layout">
+      <aside class="card rules-nav" id="rulesNav">
+        <button class="active" data-rule-target="0">01 — Загальні положення</button>
+        <button data-rule-target="1">02 — Спілкування</button>
+        <button data-rule-target="2">03 — Правила гри</button>
+        <button data-rule-target="3">04 — Публічний контент</button>
+        <button data-rule-target="4">05 — Донатні ранги</button>
+        <button data-rule-target="5">06 — Адміністрація</button>
+      </aside>
+      <div class="card rules-content">
+        <div class="rules-intro">
+          ✦ Граючи на сервері, ти погоджуєшся дотримуватися правил. Якщо не впевнений, чи дозволена певна дія, уточни це в адміністрації до її виконання.
+        </div>
+        <input class="rule-search" id="ruleSearch" type="search" placeholder="⌕ Пошук по правилах...">
+        <div id="rulesList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="application">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Стань частиною команди</div>
+      <h2>Заявка до <span class="purple">команди</span></h2>
+      <p>Розкажи про себе та свій досвід. Форма нижче демонстраційна: вона не надсилає дані адміністрації без підключення серверної обробки.</p>
+    </div>
+    <div class="card reveal" style="padding:clamp(20px,4vw,38px)">
+      <form id="applicationForm">
+        <div class="form-grid">
+          <div class="field"><label for="appNick">Нікнейм Minecraft *</label><input id="appNick" name="nickname" required maxlength="32" placeholder="Твій нікнейм"></div>
+          <div class="field"><label for="appAge">Вік *</label><input id="appAge" name="age" type="number" required min="13" max="99" placeholder="Твій вік"></div>
+          <div class="field"><label for="appRole">Бажана роль *</label>
+            <select id="appRole" name="role" required>
+              <option value="">Обери роль</option><option>Модератор</option><option>Помічник</option><option>Будівельник</option><option>Інше</option>
+            </select>
+          </div>
+          <div class="field"><label for="appDiscord">Discord *</label><input id="appDiscord" name="discord" required maxlength="80" placeholder="Твій Discord"></div>
+          <div class="field full"><label for="appExperience">Досвід та мотивація *</label><textarea id="appExperience" name="experience" required maxlength="3000" placeholder="Розкажи про свій досвід, навички та чому хочеш приєднатися до команди..."></textarea></div>
+          <div class="field full"><label style="display:flex;gap:9px;align-items:flex-start;font-weight:500"><input type="checkbox" required style="width:auto;margin-top:4px"> Я підтверджую, що інформація в заявці правдива.</label></div>
+          <div class="field full"><button class="btn btn-primary" type="submit">Перевірити заявку ↗</button></div>
+        </div>
+      </form>
+      <p class="form-note" id="formMessage">Форма працює локально для демонстрації. Для справжнього надсилання потрібен бекенд або інтеграція з Discord.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="community" style="padding-top:15px">
+  <div class="container">
+    <div class="card promo reveal" style="text-align:center;padding:50px 24px">
+      <div class="eyebrow" style="justify-content:center">Твоя спільнота чекає</div>
+      <h2 style="font-family:Orbitron,sans-serif;font-size:clamp(25px,4vw,42px);margin:18px 0">ПОБАЧИМОСЯ <span class="purple">У ГРІ</span></h2>
+      <p style="margin:0 auto 24px">Новини, спілкування, запитання та підтримка — в офіційному Discord Mysterious Game UA.</p>
+      <a class="btn btn-primary" href="https://discord.gg/jRgqqB5WeD" target="_blank" rel="noopener noreferrer">Приєднатися до Discord ↗</a>
+      <div class="promo-art">✧</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#home">
+          <div class="brand-icon">✦</div>
+          <div class="brand-name">MYSTERIOUS GAME<small>UKRAINIAN COMMUNITY</small></div>
+        </a>
+        <p style="margin-top:15px;max-width:330px">Minecraft — пригоди, творчість і спільнота. Створи власну історію разом із Mysterious Game UA.</p>
+      </div>
+      <div><h4>НАВІГАЦІЯ</h4><div class="footer-links">
+        <a href="#modes">Режими гри</a><a href="#ranks">Привілеї</a><a href="#rules">Правила</a><a href="#application">Заявка до команди</a>
+      </div></div>
+      <div><h4>СПІЛЬНОТА</h4><div class="footer-links">
+        <a href="https://discord.gg/jRgqqB5WeD" target="_blank" rel="noopener noreferrer">Discord ↗</a><a href="#join">Як приєднатися</a><a href="#vote">Голосування</a>
+      </div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Mysterious Game UA. Усі права захищені.</span>
+      <span>Неофіційний фан-проєкт Minecraft. Не пов'язаний з Mojang або Microsoft.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="На початок">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Пошук по сайту">
+  <div class="card modal-box">
+    <div class="modal-top"><h3>ПОШУК ПО САЙТУ</h3><button class="icon-btn" id="searchClose" aria-label="Закрити">×</button></div>
+    <input class="rule-search" id="siteSearch" type="search" placeholder="Наприклад: Farmer, правила, Discord...">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* =========================================================
+   НАЛАШТУВАННЯ САЙТУ
+   Заміни порт Bedrock і посилання для голосування на справжні.
+   ========================================================= */
+const CONFIG = {
+  javaIP: "mysterious-game.pp.ua",
+  bedrockIP: "mysterious-game.pp.ua",
+  bedrockPort: "",
+  discordURL: "https://discord.gg/jRgqqB5WeD",
+  voteURL: ""
+};
+
+/* =========================================================
+   КАТАЛОГ ПРИВІЛЕЇВ
+   Перевір назву рангу за 100 грн і можливості Ranger.
+   ========================================================= */
+const ranks = [
+  {
+    name:"Ranger",price:null,category:"low",symbol:"✧",
+    desc:"Базові додаткові можливості для гравця.",
+    features:[
+      "Усі можливості звичайного гравця",
+      "2 точки дому","4 привати","Інвентар",
+      "Приват до 500 000 блоків"
+    ],
+    note:"Ціна не вказана."
+  },
+  {
+    name:"Ранг за 100₴",price:100,category:"low",symbol:"✦",
+    desc:"Додаткові можливості торгівлі та зручності.",
+    features:[
+      "15 предметів на торговому майданчику",
+      "Лоти зберігаються 5 днів",
+      "30 скринь-магазинів","2 PWarp",
+      "/afk — перехід в AFK"
+    ],
+    note:"Назва рангу в оригінальному тексті пошкоджена. Уточни перед публікацією."
+  },
+  {
+    name:"Farmer",price:200,category:"low",symbol:"♧",
+    desc:"Для тих, хто розвиває господарство та торгівлю.",
+    features:[
+      "Усі можливості Ranger та нижчих рангів",
+      "3 точки дому","4 привати","Приват до 700 000 блоків",
+      "20 предметів на торговому майданчику",
+      "Лоти зберігаються 7 днів","40 скринь-магазинів",
+      "3 PWarp","Флаги: ice-form, ice-melt",
+      "/workbench — віртуальний верстак",
+      "/ext — загасити себе","/hat — блок на голову"
+    ]
+  },
+  {
+    name:"Miner",price:400,category:"mid",symbol:"⛏",
+    desc:"Розширені ліміти, команди та можливості.",
+    features:[
+      "Усі можливості Farmer та нижчих рангів",
+      "5 точок дому","5 приватів","Приват до 700 000 блоків",
+      "25 предметів на торговому майданчику",
+      "Лоти зберігаються 9 днів","45 скринь-магазинів","4 PWarp",
+      "Флаги: fall-damage, mob-damage",
+      "/dback — місце останньої смерті",
+      "/suicide — команда самостійної смерті",
+      "/enderchest — віртуальна ендер-скриня",
+      "/itemname — назва предмета","/feed — відновити голод",
+      "/pweather — персональна погода","/giveaway — розіграш"
+    ]
+  },
+  {
+    name:"Craftmaster",price:600,category:"mid",symbol:"⚒",
+    desc:"Більше домів, приватів та інструментів.",
+    features:[
+      "Усі можливості Miner та нижчих рангів",
+      "7 точок дому","7 приватів","Приват до 1 500 000 блоків",
+      "35 предметів на торговому майданчику",
+      "Лоти зберігаються 12 днів","50 скринь-магазинів","5 PWarp",
+      "Флаги: mob-spawning, greeting, farewell",
+      "/ptime — персональний час",
+      "/armorstand — налаштування стійок для броні",
+      "/itemlore — опис предмета",
+      "/blockhead — налаштування випадання голови"
+    ]
+  },
+  {
+    name:"Lord",price:800,category:"high",symbol:"♜",
+    desc:"Високий ранг із розширеними можливостями.",
+    features:[
+      "Усі можливості Craftmaster та нижчих рангів",
+      "9 точок дому","9 приватів","Приват до 3 000 000 блоків",
+      "55 предметів на торговому майданчику",
+      "Лоти зберігаються 15 днів","60 скринь-магазинів",
+      "Розширена ендер-скриня /ec","7 PWarp",
+      "/notarget — вимкнути агресію мобів",
+      "/heal — лікування раз на 25 хвилин"
+    ]
+  },
+  {
+    name:"Overlord",price:1000,category:"high",symbol:"👑",
+    desc:"Найбільші ліміти та можливості.",
+    features:[
+      "Усі можливості Lord та нижчих рангів",
+      "100 точок дому","20 приватів","Приват до 5 000 000 блоків",
+      "100 предметів на торговому майданчику",
+      "Лоти зберігаються 30 днів","150 скринь-магазинів","100 PWarp",
+      "/day — день раз на 25 хвилин",
+      "/night — ніч раз на 25 хвилин",
+      "/sun — сонячна погода раз на 25 хвилин",
+      "/rain — дощ раз на 25 хвилин"
+    ]
+  }
+];
+
+/* =========================================================
+   ПРАВИЛА SURVIVAL З МОДАМИ
+   ========================================================= */
+const ruleGroups = [
+  {
+    title:"1. Загальні положення",
+    items:[
+      "1.1. Граючи на сервері, ви автоматично підтверджуєте, що ознайомилися з правилами та погоджуєтеся їх дотримуватися.",
+      "1.2. Незнання правил не звільняє від відповідальності.",
+      "1.3. Адміністрація має право змінювати або доповнювати правила. Актуальна версія завжди доступна на сервері.",
+      "1.4. Якщо певна ситуація не описана правилами, адміністрація приймає рішення, керуючись принципами чесної гри та інтересами сервера.",
+      "1.5. Рішення адміністрації є обов'язковими до виконання. Якщо ви вважаєте рішення помилковим, можна попросити повторного розгляду.",
+      "1.6. Якщо гравець не заходив на сервер понад 6 місяців, адміністрація може видалити його привати, споруди та інші дані для звільнення ресурсів сервера.",
+      "1.7. Творчість, будівництво, автоматизація та нестандартні ідеї дозволені, якщо вони не порушують правила, не дають нечесної переваги, не шкодять іншим гравцям і не впливають на стабільність сервера."
+    ]
+  },
+  {
+    title:"2. Спілкування та поведінка",
+    items:[
+      "2.2. У глобальному чаті заборонені образи, приниження, токсична поведінка та нецензурна лексика.",
+      "2.3. У локальному чаті та особистих повідомленнях адміністрація не втручається у взаємне спілкування, якщо воно не порушує правил. У разі скарги адміністрація може втрутитися. Для небажаних повідомлень рекомендується /ignore.",
+      "2.4. Заборонені флуд, спам та надмірне використання великих літер.",
+      "2.5. Заборонено навмисно розпалювати конфлікти.",
+      "2.6. Заборонено використовувати або поширювати нацистську, комуністичну, російську, екстремістську символіку чи контент, що пропагує насильство, війну, тоталітарні режими або принижує інших гравців.",
+      "2.7. Заборонено рекламувати сторонні сервери, проєкти чи послуги без дозволу адміністрації.",
+      "2.8. Заборонено безпідставно звинувачувати інших гравців у порушенні правил.",
+      "2.9. Заборонено поширювати неправдиву інформацію про сервер, адміністрацію, вайп або інші події.",
+      "2.10. Заборонено поширювати сторонні посилання або небезпечний контент.",
+      "2.11. Заборонено публічно обговорювати теми сексуального характеру та поширювати матеріали 18+."
+    ]
+  },
+  {
+    title:"3. Правила гри",
+    items:[
+      "3.1. Суворо заборонено продавати ігрові ресурси, валюту, акаунти, побудови тощо за реальні гроші.",
+      "3.2. Заборонено використовувати нікнейми, що повністю або частково копіюють ніки адміністрації та можуть вводити інших гравців в оману.",
+      "3.3. Заборонено перешкоджати роботі адміністрації будь-яким чином.",
+      "3.4. Заборонено обходити блокування акаунта, систему ПГК та інші серверні обмеження.",
+      "3.5. PvP дозволене, якщо воно не порушує інших правил.",
+      "3.6. Заборонено заманювати гравців у пастки або використовувати механіки, які позбавляють їх можливості захиститися чи уникнути смерті.",
+      "3.7. Заборонено вбивати гравців у приватах, на спавні та інших територіях, де PvP заборонене.",
+      "3.8. Заборонено багаторазово вбивати одного гравця біля його бази або точки відродження.",
+      "3.9. Використання предметів, ефектів, зачарувань і механік Minecraft дозволене, якщо воно не порушує інших правил.",
+      "3.10. Кожен гравець має право на особистий простір.",
+      "3.11. Нові привати дозволено створювати не ближче ніж за 300 блоків від чужого привату без згоди власника.",
+      "3.12. Заборонено встановлювати точки телепортації або перебувати в чужому приваті без дозволу власника після вимоги залишити територію.",
+      "3.13. Заборонено навмисно перешкоджати роботі чужих ферм або механізмів.",
+      "3.14. На сервері заборонене гриферство.",
+      "3.15. Заборонено привласнювати чужі мапарти або інші авторські роботи без згоди автора.",
+      "3.16. Заборонено навмисно псувати світ безглуздими спорудами, ямами, стовпами та іншими конструкціями.",
+      "3.17. Заборонено нав'язливо випрошувати ресурси, валюту, предмети чи іншу допомогу.",
+      "3.18. Не допускаються ферми або конструкції, що створюють надмірне навантаження, надмірна кількість мобів, імбалансні AFK-ферми та AFK-рибалка.",
+      "3.19. Заборонені модифікації, макроси та інші засоби, що дають нечесну перевагу або автоматизують ігрові дії.",
+      "3.20. Дозволені модифікації та ресурс-паки, що не впливають на баланс: мінікарти, Litematica без автопобудови, Replay Mod, косметичні ресурс-паки та шейдери.",
+      "3.21. Використання FreeCam не рекомендується. Якщо воно сприяло порушенню правил, це може вважатися обтяжуючою обставиною.",
+      "3.22. Заборонено використовувати баги гри або плагінів для отримання переваги. Про знайдені баги повідомляйте адміністрацію.",
+      "3.23. Заборонено використовувати сторонні засоби для пошуку сіду світу.",
+      "3.24. Заборонено будувати лаг-машини, механізми, що погіршують продуктивність сервера, та використовувати дюп предметів.",
+      "3.25. Заборонено використовувати Chunk Loader та інші механізми примусового завантаження чанків.",
+      "3.26. Заборонено використовувати понад 8 лійок (хоперів) поспіль.",
+      "3.27. Не допускається надмірна кількість стійок для броні, рамок та декоративних елементів, якщо вони спричиняють лаги.",
+      "3.28. Заборонено зловживати можливостями плагінів на шкоду іншим гравцям або серверу.",
+      "3.29. Адміністрація може вимагати оптимізувати або демонтувати споруди чи механізми, які негативно впливають на продуктивність сервера.",
+      "3.30. Додаючи іншого гравця до привату, ви самостійно довіряєте йому своє майно. У більшості таких випадків адміністрація не втручається.",
+      "3.31. Добровільні домовленості між гравцями — позики, обмін, спільне користування ресурсами — здійснюються на власний ризик.",
+      "3.32. Телепортація до інших гравців (/tpa, /call тощо) здійснюється на власний ризик. Втрата майна після телепортації не є підставою для втручання, якщо не порушено інших правил."
+    ]
+  },
+  {
+    title:"4. Публічний контент",
+    items:[
+      "4.1. Увесь контент, доступний іншим гравцям, повинен відповідати правилам сервера.",
+      "4.2. Заборонено використовувати образливі або нецензурні нікнейми.",
+      "4.3. Заборонено використовувати образливі, нецензурні або провокаційні назви предметів, якщо їх можуть бачити інші гравці.",
+      "4.4. Заборонено використовувати неприйнятні назви для PWarp, магазинів та інших публічних об'єктів.",
+      "4.5. Заборонено розміщувати в публічних місцях порнографічні або відверто сексуальні зображення й тексти.",
+      "4.6. Заборонено розміщувати публічний контент з образами, закликами до насильства або забороненою символікою, зокрема на офіційному Discord-сервері."
+    ]
+  },
+  {
+    title:"5. Донатні ранги",
+    items:[
+      "5.1. Донатний ранг не звільняє від дотримання правил.",
+      "5.2. Донатний ранг не надає переваг під час розгляду порушень.",
+      "5.3. У разі блокування акаунта донатні привілеї залишаються прив'язаними до нього та не переносяться.",
+      "5.4. Адміністрація може змінювати склад донатних привілеїв для підтримки балансу сервера.",
+      "5.5. Донат є добровільною підтримкою сервера. У наданому тексті зазначено, що кошти за цифрові товари не повертаються."
+    ]
+  },
+  {
+    title:"6. Політика адміністрації",
+    items:[
+      "6.1. Адміністрація прагне діяти відповідно до правил та враховує обставини кожної ситуації.",
+      "6.2. Адміністрація не відповідає за втрату майна через чесне PvP, необережність гравця, проблеми з інтернетом, клієнтом Minecraft або сторонніми модифікаціями.",
+      "6.3. Якщо майно втрачено через доведене порушення правил або технічну помилку сервера, адміністрація може відновити його, якщо це технічно можливо.",
+      "6.4. Покарання визначається з урахуванням тяжкості, наслідків і повторності порушення.",
+      "6.5. Введення адміністрації в оману або надання неправдивих доказів може розцінюватися як окреме порушення."
+    ]
+  }
+];
+
+/* HELPERS */
+const $ = (selector, root=document) => root.querySelector(selector);
+const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
+
+function toast(message){
+  const el=$("#toast");
+  el.textContent=message;
+  el.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer=setTimeout(()=>el.classList.remove("show"),2600);
+}
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
+}
+
+/* COPY IP */
+async function copyText(value){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(value);
+    }else{
+      const input=document.createElement("textarea");
+      input.value=value;
+      input.style.position="fixed";
+      input.style.opacity="0";
+      document.body.appendChild(input);
+      input.select();
+      const success=document.execCommand("copy");
+      input.remove();
+      if(!success) throw new Error("Copy failed");
+    }
+    toast("Скопійовано: "+value);
+  }catch(error){
+    toast("Не вдалося скопіювати. Адреса: "+value);
+  }
+}
+
+$$("[data-copy]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const type=button.dataset.copy;
+    const address=type==="bedrock" ? CONFIG.bedrockIP : CONFIG.javaIP;
+    const value=type==="bedrock" && CONFIG.bedrockPort
+      ? address+":"+CONFIG.bedrockPort : address;
+    copyText(value);
+  });
+});
+
+/* RANK CARDS */
+const rankGrid=$("#rankGrid");
+
+function renderRanks(filter="all"){
+  const filtered=ranks.filter(rank=>filter==="all"||rank.category===filter);
+  rankGrid.innerHTML=filtered.map((rank,index)=>{
+    const price=rank.price===null
+      ? "Уточнити"
+      : `${rank.price}<small> ₴ назавжди</small>`;
+    const features=rank.features.map((feature,i)=>
+      `<li class="${i>=5?"extra":""}">${escapeHTML(feature)}</li>`
+    ).join("");
+    return `
+      <article class="card rank-card reveal ${rank.name==="Miner"?"featured":""}" data-rank="${escapeHTML(rank.name)}">
+        <div class="rank-top">
+          <div class="rank-symbol">${rank.symbol}</div>
+          ${rank.name==="Overlord"?'<span class="tag">MAX RANK</span>':""}
+        </div>
+        <h3>${escapeHTML(rank.name)}</h3>
+        <div class="rank-price">${price}</div>
+        <p class="rank-desc">${escapeHTML(rank.desc)}</p>
+        <ul class="rank-features">${features}</ul>
+        ${rank.features.length>5?'<button class="btn btn-secondary btn-small expand-rank" style="width:100%;margin-top:12px">Показати всі можливості ↓</button>':""}
+        <div class="rank-bottom">
+          <button class="btn btn-primary btn-small rank-contact" data-rank-name="${escapeHTML(rank.name)}">Як отримати ↗</button>
+        </div>
+        ${rank.note?`<p class="rank-note">${escapeHTML(rank.note)}</p>`:""}
+      </article>`;
+  }).join("");
+
+  observeReveals();
+}
+
+$("#rankFilters").addEventListener("click",event=>{
+  const button=event.target.closest("[data-filter]");
+  if(!button)return;
+  $$(".filter-btn").forEach(item=>item.classList.toggle("active",item===button));
+  renderRanks(button.dataset.filter);
+});
+
+rankGrid.addEventListener("click",event=>{
+  const expand=event.target.closest(".expand-rank");
+  if(expand){
+    const card=expand.closest(".rank-card");
+    const expanded=card.classList.toggle("expanded");
+    expand.textContent=expanded?"Згорнути ↑":"Показати всі можливості ↓";
+  }
+  const contact=event.target.closest(".rank-contact");
+  if(contact){
+    const name=contact.dataset.rankName;
+    const url=CONFIG.discordURL;
+    toast("Уточни видачу рангу "+name+" в Discord.");
+    window.open(url,"_blank","noopener,noreferrer");
+  }
+});
+
+/* RULES */
+function renderRules(query=""){
+  const normalized=query.trim().toLocaleLowerCase("uk");
+  const list=$("#rulesList");
+  let shown=0;
+
+  list.innerHTML=ruleGroups.map((group,index)=>{
+    const matching=group.items.filter(item=>
+      !normalized || (group.title+" "+item).toLocaleLowerCase("uk").includes(normalized)
+    );
+    if(!matching.length)return "";
+    shown+=matching.length;
+    return `
+      <section class="rule-group ${normalized||index===0?"open":""}">
+        <button class="rule-heading" aria-expanded="${normalized||index===0?"true":"false"}">
+          <span>${escapeHTML(group.title)}</span><span>＋</span>
+        </button>
+        <div class="rule-body">
+          ${matching.map(item=>`<p>${escapeHTML(item)}</p>`).join("")}
+        </div>
+      </section>`;
+  }).join("");
+
+  if(!shown){
+    list.innerHTML='<p class="muted" style="font-size:12px;padding:15px 0">За цим запитом нічого не знайдено.</p>';
+  }
+}
+
+$("#rulesList").addEventListener("click",event=>{
+  const heading=event.target.closest(".rule-heading");
+  if(!heading)return;
+  const group=heading.closest(".rule-group");
+  const open=group.classList.toggle("open");
+  heading.setAttribute("aria-expanded",String(open));
+});
+
+$("#ruleSearch").addEventListener("input",event=>renderRules(event.target.value));
+
+$("#rulesNav").addEventListener("click",event=>{
+  const button=event.target.closest("[data-rule-target]");
+  if(!button)return;
+  const index=Number(button.dataset.ruleTarget);
+  $$("#rulesNav button").forEach(item=>item.classList.toggle("active",item===button));
+  $("#ruleSearch").value="";
+  renderRules();
+  const groups=$$(".rule-group",$("#rulesList"));
+  groups.forEach((group,i)=>{
+    group.classList.toggle("open",i===index);
+    const heading=$(".rule-heading",group);
+    if(heading)heading.setAttribute("aria-expanded",String(i===index));
+  });
+  $("#rules").scrollIntoView({behavior:"smooth"});
+});
+
+/* MOBILE MENU */
+const mobilePanel=$("#mobilePanel");
+const menuToggle=$("#menuToggle");
+
+menuToggle.addEventListener("click",()=>{
+  const open=mobilePanel.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded",String(open));
+  menuToggle.textContent=open?"×":"☰";
+});
+$$(".mobile-panel a").forEach(link=>link.addEventListener("click",()=>{
+  mobilePanel.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded","false");
+  menuToggle.textContent="☰";
+}));
+
+/* SITE SEARCH */
+const searchable=[
+  {name:"Головна",url:"#home",text:"Mysterious Game UA"},
+  {name:"Режими гри",url:"#modes",text:"OneBlock Anarchy Survival"},
+  {name:"Можливості",url:"#features",text:"привати будівництво економіка"},
+  {name:"Привілеї",url:"#ranks",text:ranks.map(r=>r.name+" "+r.features.join(" ")).join(" ")},
+  {name:"Голосування",url:"#vote",text:"голосування підтримка сервера"},
+  {name:"Правила",url:"#rules",text:ruleGroups.map(g=>g.title+" "+g.items.join(" ")).join(" ")},
+  {name:"Заявка до команди",url:"#application",text:"модератор помічник будівельник"},
+  {name:"Discord",url:"#community",text:"спільнота підтримка"}
+];
+
+function renderSearch(query=""){
+  const normalized=query.trim().toLocaleLowerCase("uk");
+  const results=searchable.filter(item=>
+    !normalized || (item.name+" "+item.text).toLocaleLowerCase("uk").includes(normalized)
+  );
+  $("#searchResults").innerHTML=results.length
+    ?results.map(item=>`<a href="${item.url}" class="search-result"><strong>${escapeHTML(item.name)}</strong><br><span class="muted">${escapeHTML(item.text.slice(0,105))}…</span></a>`).join("")
+    :'<p class="muted" style="font-size:12px">Нічого не знайдено.</p>';
+}
+
+const searchModal=$("#searchModal");
+$("#searchOpen").addEventListener("click",()=>{
+  searchModal.classList.add("show");
+  renderSearch();
+  $("#siteSearch").value="";
+  $("#siteSearch").focus();
+});
+$("#searchClose").addEventListener("click",()=>searchModal.classList.remove("show"));
+searchModal.addEventListener("click",event=>{
+  if(event.target===searchModal)searchModal.classList.remove("show");
+});
+$("#siteSearch").addEventListener("input",event=>renderSearch(event.target.value));
+$("#searchResults").addEventListener("click",event=>{
+  if(event.target.closest("a"))searchModal.classList.remove("show");
+});
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+    searchModal.classList.remove("show");
+    mobilePanel.classList.remove("open");
+  }
+  if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){
+    event.preventDefault();
+    searchModal.classList.add("show");
+    $("#siteSearch").focus();
+  }
+});
+
+/* VOTE */
+$("#voteButton").addEventListener("click",()=>{
+  if(CONFIG.voteURL && /^https:\/\/[^ ]+/i.test(CONFIG.voteURL)){
+    window.open(CONFIG.voteURL,"_blank","noopener,noreferrer");
+  }else{
+    toast("Адміністрації потрібно додати посилання для голосування.");
+  }
+});
+
+/* DEMO APPLICATION FORM */
+$("#applicationForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  const form=event.currentTarget;
+  if(!form.reportValidity())return;
+  $("#formMessage").textContent=
+    "Форма перевірена, але заявка не надіслана. Потрібно підключити безпечний бекенд або офіційну інтеграцію.";
+  toast("Форма перевірена. Надсилання ще не підключено.");
+});
+
+/* REVEAL ANIMATIONS */
+let revealObserver;
+function observeReveals(){
+  if(!("IntersectionObserver" in window)){
+    $$(".reveal").forEach(el=>el.classList.add("visible"));
+    return;
+  }
+  if(revealObserver)revealObserver.disconnect();
+  revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:.08});
+  $$(".reveal:not(.visible)").forEach(el=>revealObserver.observe(el));
+}
+
+/* SCROLL UI */
+const backTop=$("#backTop");
+window.addEventListener("scroll",()=>{
+  backTop.classList.toggle("show",window.scrollY>500);
+},{passive:true});
+backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+/* INIT */
+$("#year").textContent=new Date().getFullYear();
+$("#serverAddress").textContent=CONFIG.javaIP;
+renderRanks();
+renderRules();
+renderSearch();
+observeReveals();
+</script>
+</body>
+</html>
